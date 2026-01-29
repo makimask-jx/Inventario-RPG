@@ -37,6 +37,42 @@ opciones: list = [
     "Salir",
 ]
 
+
+def batalla_analisis() -> None:
+    pass
+
+
+def tasar_inventario() -> None:
+    pass
+
+
+def grimorio_hechizos() -> None:
+    pass
+
+
+def consumir_objeto() -> None:
+    pass
+
+
+def encontrar_cofre() -> None:
+    pass
+
+
+def ver_estado() -> None:
+    nombre = personaje.get("nombre")
+    clase = personaje.get("clase")
+    nivel = personaje.get("nivel")
+    vida = personaje.get("vida")
+    mana = personaje.get("mana")
+
+    print(
+        f"{MAGENTA}"
+        f"{nombre} ({clase}) - Nivel {nivel}\n"
+        f"Vida: {vida} | Mana: {mana} | Suerte: 0"
+        f"{RESET}"
+    )
+
+
 while True:
     print(f"{AZUL}--- Gestor RPG ---{RESET}")
     for opcion in opciones:
@@ -47,8 +83,20 @@ while True:
         comando: int = int(input("⚔️ Acción a realizar: "))
 
         match comando:
+            case 0:
+                ver_estado()
+            case 1:
+                encontrar_cofre()
+            case 2:
+                consumir_objeto()
+            case 3:
+                grimorio_hechizos()
+            case 4:
+                tasar_inventario()
+            case 5:
+                batalla_analisis()
             case 6:
-                print(f"{MAGENTA}\n¡Adiós Eldrin!{RESET}")
+                print(f"{MAGENTA}¡Adiós Eldrin!{RESET}")
                 break
             case _:
                 print(f"{ROJO}\n❓Comando no encontrado {RESET}❓")
