@@ -26,12 +26,6 @@ En este ejercicio pondrás a prueba **absolutamente todo** lo aprendido sobre di
     - `Counter`: Para contar el botín (loot) de batalla automáticamente.
     - `defaultdict`: Para clasificar hechizos por tipo de magia.
 
-Trabajarás en un archivo llamado `rpg-inventory_apellidos_nombre.py`.
-- Si no tienes apellido2 no lo pongas.
-- Si tienes acentos no los pongas.
-- Si tu nombre o apellido tiene espacios, sustituye el espacio por un guion `-`.
-Por ejemplo "Miguel Ángel González Pérez" sería `rpg-inventory_gonzalez_perez_miguel-angel.py`.
-
 ---
 
 ## Objetivo
