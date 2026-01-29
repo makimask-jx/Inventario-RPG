@@ -26,7 +26,19 @@ personaje: dict = {
     ],
 }
 
+cofre: dict = {
+    "Espada oxidada": 1,
+    "Pocion de vida": 2,
+}
 
+drops: list[str] = [
+    "Diente de Goblin",
+    "Moneda",
+    "Diente de Goblin",
+    "Poción",
+    "Moneda",
+    "Moneda",
+]
 opciones: list = [
     "Ver estado del Héroe",
     "Encontrar Cofre",
@@ -55,6 +67,7 @@ def consumir_objeto() -> None:
 
 
 def encontrar_cofre() -> None:
+
     pass
 
 
