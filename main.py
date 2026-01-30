@@ -39,7 +39,7 @@ drops: list[str] = [
     "Moneda",
     "Moneda",
 ]
-opciones: list = [
+opciones: list[str] = [
     "Ver estado del Héroe",
     "Encontrar Cofre",
     "Consumir Objeto",
@@ -72,11 +72,11 @@ def encontrar_cofre() -> None:
 
 
 def ver_estado() -> None:
-    nombre = personaje.get("nombre")
-    clase = personaje.get("clase")
-    nivel = personaje.get("nivel")
-    vida = personaje.get("vida")
-    mana = personaje.get("mana")
+    nombre: str | None = personaje.get("nombre")
+    clase: str | None = personaje.get("clase")
+    nivel: int | None = personaje.get("nivel")
+    vida: int | None = personaje.get("vida")
+    mana: int | None = personaje.get("mana")
 
     print(
         f"{MAGENTA}"
