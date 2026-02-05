@@ -12,6 +12,7 @@ personaje: dict = {
     "nombre": "Eldrin",
     "clase": "Hechicero",
     "nivel": 5,
+    "oro": 0,
     "stats": {
         "vida": 100,
         "mana": 150,
@@ -25,7 +26,7 @@ personaje: dict = {
         {"nombre": "Curación Menor", "dano": -20, "coste": 15, "elemento": "Luz"},
     ],
 }
-
+# Molaria si se randomizara lo que obtienes en cada cofre
 cofre: dict = {
     "Espada Oxidada": 1,
     "Poción de Vida": 2,
@@ -68,6 +69,22 @@ def tasar_inventario() -> None:
         item: cantidad * 10 for item, cantidad in personaje["inventario"].items()
     }
     print(f"{valores_venta}")
+    total_valor = sum(valores_venta.values())
+
+    if total_valor > 0:
+        opcion = input(
+            f"¿Deseas vender todo el inventario por {total_valor} monedas? (s/n): "
+        ).lower()
+        if opcion == "s":
+            personaje["oro"] += total_valor
+            personaje["inventario"].clear()
+            print(
+                f"{VERDE}¡Has vendido todo! Ahora tienes {personaje['oro']} monedas.{RESET}"
+            )
+        else:
+            print("Inventario conservado.")
+    else:
+        print("No hay nada que vender.")
 
 
 def grimorio_hechizos() -> None:
@@ -95,8 +112,8 @@ def consumir_objeto() -> None:
 
 def encontrar_cofre() -> None:
     print(f"{VERDE}¡Has encontrado un cofre! Inventario actualizado:{RESET}")
-    # Fusion de diccionarios con |
-    personaje["inventario"] = personaje["inventario"] | cofre
+    # Fusion de diccionarios sumando cantidades con Counter
+    personaje["inventario"] = dict(Counter(personaje["inventario"]) + Counter(cofre))
     print(f"{personaje['inventario']}")
 
 
@@ -104,6 +121,7 @@ def ver_estado() -> None:
     nombre: str | None = personaje.get("nombre")
     clase: str | None = personaje.get("clase")
     nivel: int | None = personaje.get("nivel")
+    oro: int = personaje.get("oro", 0)
 
     stats = personaje.get("stats", {})
     vida: int = stats.get("vida", 0)
@@ -113,7 +131,7 @@ def ver_estado() -> None:
     print(f"{AZUL}Estado de {nombre}:{RESET}")
     print(
         f"{MAGENTA}"
-        f"{nombre} ({clase}) - Nivel {nivel}\n"
+        f"{nombre} ({clase}) - Nivel {nivel} - Oro: {oro}\n"
         f"Vida: {vida} | Mana: {mana} | Suerte: {suerte}"
         f"{RESET}"
     )
