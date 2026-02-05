@@ -45,7 +45,7 @@ opciones: list[str] = [
     "Consumir Objeto",
     "Grimorio de hechizos",
     "Tasar inventario",
-    "Batalla y Analsis",
+    "Batalla y Análisis",
     "Salir",
 ]
 
@@ -115,27 +115,27 @@ def ver_estado() -> None:
 
 while True:
     print(f"{AZUL}--- Gestor RPG ---{RESET}")
-    for opcion in opciones:
-        print(f"{opciones.index(opcion)}. {opcion}")
+    for i, opcion in enumerate(opciones, 1):
+        print(f"{i}. {opcion}")
     print(f"{AZUL}-{RESET}" * 18)
 
     try:
         comando: int = int(input("Acción a realizar: "))
 
         match comando:
-            case 0:
-                ver_estado()
             case 1:
-                encontrar_cofre()
+                ver_estado()
             case 2:
-                consumir_objeto()
+                encontrar_cofre()
             case 3:
-                grimorio_hechizos()
+                consumir_objeto()
             case 4:
-                tasar_inventario()
+                grimorio_hechizos()
             case 5:
-                batalla_analisis()
+                tasar_inventario()
             case 6:
+                batalla_analisis()
+            case 7:
                 print(f"{MAGENTA}¡Adiós Eldrin!{RESET}")
                 break
             case _:
