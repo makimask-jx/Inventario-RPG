@@ -80,7 +80,7 @@ def consumir_objeto() -> None:
     if objeto in personaje["inventario"]:
         try:
             cantidad = personaje["inventario"].pop(objeto)
-            print(f"{MAGENTA}Glup, glup... Has consumido {objeto}. Quedaban {cantidad} unidades.{RESET}")
+            print(f"{MAGENTA}Has consumido {objeto}. Quedaban {cantidad} unidades.{RESET}")
         except KeyError:
              print(f"{ROJO}Error al consumir el objeto.{RESET}")
     else:
