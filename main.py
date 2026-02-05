@@ -55,34 +55,40 @@ def batalla_analisis() -> None:
     conteo_drops = Counter(drops)
     print(f"Loot conseguido: {conteo_drops}")
 
-    libro_ordenado = defaultdict(list)
+    libro_ordenado: dict = defaultdict(list)
     for hechizo in personaje["hechizos"]:
         libro_ordenado[hechizo["elemento"]].append(hechizo["nombre"])
-    
+
     print(f"Hechizos por elemento: {dict(libro_ordenado)}")
 
 
 def tasar_inventario() -> None:
     print(f"{MAGENTA}Valor de venta de tu inventario:{RESET}")
-    valores_venta = {item: cantidad * 10 for item, cantidad in personaje["inventario"].items()}
+    valores_venta: dict = {
+        item: cantidad * 10 for item, cantidad in personaje["inventario"].items()
+    }
     print(f"{valores_venta}")
 
 
 def grimorio_hechizos() -> None:
     print(f"{AZUL}--- GRIMORIO ---{RESET}")
     for hechizo in personaje["hechizos"]:
-        print(f"{hechizo['nombre']} (Elemento: {hechizo['elemento']}) - Coste: {hechizo['coste']} maná")
+        print(
+            f"{hechizo['nombre']} (Elemento: {hechizo['elemento']}) - Coste: {hechizo['coste']} maná"
+        )
 
 
 def consumir_objeto() -> None:
     print(f"{AZUL}--- CONSUMIR ---{RESET}")
-    objeto = input("¿Qué objeto usas?: ")
+    objeto: str = input("¿Qué objeto usas?: ")
     if objeto in personaje["inventario"]:
         try:
             cantidad = personaje["inventario"].pop(objeto)
-            print(f"{MAGENTA}Has consumido {objeto}. Quedaban {cantidad} unidades.{RESET}")
+            print(
+                f"{MAGENTA}Has consumido {objeto}. Quedaban {cantidad} unidades.{RESET}"
+            )
         except KeyError:
-             print(f"{ROJO}Error al consumir el objeto.{RESET}")
+            print(f"{ROJO}Error al consumir el objeto.{RESET}")
     else:
         print(f"{ROJO}No tienes ese objeto en el inventario.{RESET}")
 
@@ -98,13 +104,13 @@ def ver_estado() -> None:
     nombre: str | None = personaje.get("nombre")
     clase: str | None = personaje.get("clase")
     nivel: int | None = personaje.get("nivel")
-    
+
     stats = personaje.get("stats", {})
     vida: int = stats.get("vida", 0)
     mana: int = stats.get("mana", 0)
-    suerte: int = stats.get("suerte", 0) 
+    suerte: int = stats.get("suerte", 0)
 
-    print(f"{AZUL}Estado de {nombre}:{RESET}") 
+    print(f"{AZUL}Estado de {nombre}:{RESET}")
     print(
         f"{MAGENTA}"
         f"{nombre} ({clase}) - Nivel {nivel}\n"
